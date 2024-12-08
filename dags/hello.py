@@ -4,7 +4,7 @@ from airflow.operators.python import PythonOperator
 
 
 def print_a():
-    print("Hello Anupam")
+    print("Hello Anupam| There is an update")
 
 
 with DAG("my_dag", start_date=datetime(2024, 12, 8), schedule='@daily', catchup=False,
