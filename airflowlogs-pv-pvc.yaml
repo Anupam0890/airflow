@@ -1,0 +1,33 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+   name: docker-sc
+provisioner: docker.io/hostpath
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+   name: pv0003
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: docker-sc
+  hostPath:
+    path: "/run/desktop/mnt/host/c/tmp/airflowlogs"
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: logs-pvc0003
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: docker-sc
+  resources:
+    requests:
+       storage: 1Gi
+
+
