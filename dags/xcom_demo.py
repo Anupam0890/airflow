@@ -19,7 +19,11 @@ def xcom_demo1():
         phone_detail = ti.xcom_pull(task_ids="task_a", key="mobile")
         print(phone_detail)
 
-    task_a() >> task_b()
+    @task
+    def task_c():
+        raise ValueError
+
+    task_a() >> task_b() >> task_c()
 
 
 xcom_demo1()
