@@ -16,7 +16,7 @@ def check_dag():
     def check_task():
         t_end = time.time() + 60 * 15
         while time.time() < t_end:
-            print(f"I am at time {time}")
+            print(f"I am at time {time.time()}")
             time.sleep(10)
 
     check_task()
