@@ -34,4 +34,4 @@ with DAG(
         do_xcom_push=False  # Set to True if you need to push XComs from the pod
     )
 
-    run_simple_command
+    run_simple_command >> run_python_script
