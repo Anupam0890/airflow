@@ -25,7 +25,7 @@ with DAG(
 
     run_python_script = KubernetesPodOperator(
         task_id="run_python_script_in_pod",
-        namespace="default",  # Ensure this namespace exists in your Minikube
+        namespace="airflow-cluster",  # Ensure this namespace exists in your Minikube
         image="python:3.12.11-alpine3.21",  # A suitable Python image
         cmds=["python", "-c"],
         arguments=["print('Hello from a Kubernetes Pod in Minikube!')"],
