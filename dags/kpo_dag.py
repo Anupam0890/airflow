@@ -23,4 +23,15 @@ with DAG(
         get_logs=True
     )
 
+    run_python_script = KubernetesPodOperator(
+        task_id="run_python_script_in_pod",
+        namespace="default",  # Ensure this namespace exists in your Minikube
+        image="python:3.12.11-alpine3.21",  # A suitable Python image
+        cmds=["python", "-c"],
+        arguments=["print('Hello from a Kubernetes Pod in Minikube!')"],
+        name="python-pod-task",
+        get_logs=True,  # Stream logs from the pod to Airflow task logs
+        do_xcom_push=False  # Set to True if you need to push XComs from the pod
+    )
+
     run_simple_command
