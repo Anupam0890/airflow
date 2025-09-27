@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: airflow-logs-pv
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 10Gi # Adjust size as needed
+  accessModes:
+    - ReadWriteMany # Or ReadWriteOnce, depending on your needs
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: manual # Use your desired storage class
+  hostPath:
+    path: "/data/airflow/logs"

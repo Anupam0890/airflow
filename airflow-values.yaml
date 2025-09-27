@@ -10,7 +10,7 @@ airflow:
   ##
   image:
     repository: apache/airflow
-    tag: 2.8.4-python3.9
+    tag: 2.9.1-python3.10
     pullPolicy: IfNotPresent
     pullSecret: ""
     uid: 50000
@@ -28,13 +28,13 @@ airflow:
   ## - use this command to generate your own fernet key:
   ##   python -c "from cryptography.fernet import Fernet; FERNET_KEY = Fernet.generate_key().decode(); print(FERNET_KEY)"
   ##
-  fernetKey: "7T512UXSSmBOkpWimFHIVb8jK6lfmSAvx4mO6Arehnc="
+  fernetKey: "lSaG2tytwHdYoHffZOSIBXqMY_wVy9wjpGnQ67S4c4c="
 
   ## the secret_key for flask (sets `AIRFLOW__WEBSERVER__SECRET_KEY`)
   ## - [WARNING] you must change this value to ensure the security of your airflow
   ## - set `AIRFLOW__WEBSERVER__SECRET_KEY` with `airflow.extraEnv` from a Secret to avoid storing this in your values
   ##
-  webserverSecretKey: "THIS IS UNSAFE!"
+  webserverSecretKey: "lSaG2tytwHdYoHffZOSIBXqMY_wVy9wjpGnQ67S4c4c="
 
   ## environment variables for airflow configs
   ## - airflow env-vars are structured: "AIRFLOW__{config_section}__{config_name}"
@@ -666,7 +666,7 @@ scheduler:
     ## if the log-cleanup sidecar is enabled
     ## - [WARNING] must be disabled if `logs.persistence.enabled` is `true`
     ##
-    enabled: true
+    enabled: false
 
     ## resource requests/limits for the log-cleanup container
     ## - spec of ResourceRequirements:
@@ -1451,11 +1451,11 @@ logs:
   persistence:
     ## if a persistent volume is mounted at `logs.path`
     ##
-    enabled: false
+    enabled: true
 
     ## the name of an existing PVC to use
     ##
-    existingClaim: ""
+    existingClaim: airflow-logs-pvc
 
     ## sub-path under `logs.persistence.existingClaim` to use
     ##
@@ -1474,7 +1474,7 @@ logs:
 
     ## the size of PVC to request
     ##
-    size: 1Gi
+    size: 10Gi
 
 ###################################
 ## CONFIG | Airflow DAGs
@@ -1546,7 +1546,7 @@ dags:
     ##   # ssh git repo
     ##   repo: "git@github.com:USERNAME/REPOSITORY.git"
     ##
-    repo: "https://github.com/airscholar/Kubernetes-For-DataEngineering.git"
+    repo: "https://github.com/Anupam0890/airflow.git"
 
     ## the sub-path within your repo where dags are located
     ## - only dags under this path within your repo will be seen by airflow,
@@ -1556,7 +1556,7 @@ dags:
 
     ## the git branch to check out
     ##
-    branch: main
+    branch: master
 
     ## the git revision (tag or hash) to check out
     ##
@@ -1863,7 +1863,7 @@ extraManifests: []
 pgbouncer:
   ## if the pgbouncer Deployment is created
   ##
-  enabled: false
+  enabled: true
 
   ## configs for the pgbouncer container image
   ##
@@ -2429,4 +2429,3 @@ prometheusRule:
   ## - docs for alerting rules: https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/
   ##
   groups: []
-

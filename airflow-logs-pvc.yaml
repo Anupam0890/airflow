@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: airflow-logs-pvc
+  namespace: airflow-cluster # Replace with your Airflow namespace
+spec:
+  accessModes:
+    - ReadWriteMany # Or ReadWriteOnce, matching the PV
+  storageClassName: manual # Match the PV's storage class
+  resources:
+    requests:
+       storage: 10Gi # Match the PV's capacity
