@@ -13,7 +13,7 @@ with DAG(
 # A simple task running a command in an Alpine image
     run_simple_command = KubernetesPodOperator(
         task_id='run_simple_command',
-        namespace='default',  # Or your specific namespace like 'composer-user-workloads'
+        namespace='airflow-cluster',  # Or your specific namespace like 'composer-user-workloads'
         name='simple-command-pod',
         image='alpine:latest',
         cmds=['sh', '-c'],
