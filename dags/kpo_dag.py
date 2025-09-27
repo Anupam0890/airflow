@@ -20,8 +20,7 @@ with DAG(
         arguments=['echo "Hello from a Kubernetes Pod!"'],
         do_xcom_push=False,  # Set to True if you need to push XComs
         is_delete_operator_pod=True,  # Delete the pod after completion
-        get_logs=True,  # Stream logs to Airflow task logs
-        cluster_context="docker-desktop"
+        get_logs=True
     )
 
     run_simple_command
