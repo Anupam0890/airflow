@@ -14,7 +14,7 @@ with DAG(
     kpo_push_xcom = KubernetesPodOperator( 
             task_id="kpo_push_xcom", 
             namespace="airflow-cluster", 
-            image="localhost:5000/simple_app", 
+            image="simple_app1", 
             name="airflow-test-pod",
             do_xcom_push=True,
             is_delete_operator_pod=True, 
