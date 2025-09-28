@@ -25,4 +25,6 @@ with DAG(
     @task 
     def pull_data(ti=None): 
         print(ti.xcom_pull(task_ids='kpo_push_xcom')) 
+
+    kpo_push_xcom >> pull_data()
     
