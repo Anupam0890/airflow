@@ -31,7 +31,8 @@ with DAG(
         arguments=["import sys; print('Hello from a Kubernetes Pod. Python Version: ', sys.version)"],
         name="python-pod-task",
         get_logs=True,  # Stream logs from the pod to Airflow task logs
-        do_xcom_push=False  # Set to True if you need to push XComs from the pod
+        do_xcom_push=False,  # Set to True if you need to push XComs from the pod
+        log_events_on_failure=True
     )
 
     run_simple_command >> run_python_script
