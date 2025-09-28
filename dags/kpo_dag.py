@@ -31,8 +31,17 @@ with DAG(
         arguments=["import sys; print('Hello from a Kubernetes Pod. Python Version: ', sys.version)"],
         name="python-pod-task",
         get_logs=True,  # Stream logs from the pod to Airflow task logs
-        do_xcom_push=False,  # Set to True if you need to push XComs from the pod
+        do_xcom_push=False  # Set to True if you need to push XComs from the pod
+    )
+
+    hello_world = KubernetesPodOperator(
+        task_id="hello_world",
+        namespace="airflow-cluster",  # Ensure this namespace exists in your Minikube
+        image="alpine",  # hello-world image
+        cmds=["sh", "-c", "exit 1"],
+        name="HW-pod-task",
+        get_logs=True,  # Stream logs from the pod to Airflow task logs
         log_events_on_failure=True
     )
 
-    run_simple_command >> run_python_script
+    run_simple_command >> run_python_script >> hello_world
