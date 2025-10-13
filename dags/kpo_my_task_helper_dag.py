@@ -12,7 +12,7 @@ with DAG(
     run_python_script = KubernetesPodOperator(
         task_id='run_python_with_args',
         namespace='airflow',  # Or your specific Kubernetes namespace
-        image='kpo_task_helper:1.0.0', # Replace with your image
+        image='localhost:5000/kpo_task_helper:1.0.0', # Replace with your image
         cmds=['python'],
         arguments=['/app/my_task_helper.py', 'json_to_df', '{"name": "Anupam Pandit", "age": 303, "email": "anupam.p443@fpbizx.com"}'],
         name='python-script-pod',
