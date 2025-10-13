@@ -13,6 +13,7 @@ with DAG(
         task_id='run_python_with_args',
         namespace='airflow',  # Or your specific Kubernetes namespace
         image='localhost:5000/kpo_task_helper', # Replace with your image
+        image_pull_policy='Never', # Download local images
         cmds=['python'],
         arguments=['/app/my_task_helper.py', 'json_to_df', '{"name": "Anupam Pandit", "age": 303, "email": "anupam.p443@fpbizx.com"}'],
         name='python-script-pod',
