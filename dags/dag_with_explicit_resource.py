@@ -23,7 +23,8 @@ k8s_exec_config_resource_requirements = {
 @dag(
     'dag_with_explicit_resource',
     start_date=datetime.today() - timedelta(days=1),
-    schedule_interval='@daily',
+    # Airflow 3 compatible schedule
+    schedule='@daily',
     description='A Simple Dag Explicit ',
     tags=['data_platform'],
     catchup=False
