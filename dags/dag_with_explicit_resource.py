@@ -38,7 +38,7 @@ def dag_with_explicit_resource():
     @task(executor_config=k8s_exec_config_resource_requirements)
     def resource_requirements_override_example():
         print("Started waiting ...")
-        time.sleep(60)
+        time.sleep(600)
 
     bash_resource_overrise >> resource_requirements_override_example()
 
